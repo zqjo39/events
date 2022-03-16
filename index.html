@@ -9,15 +9,25 @@
         <input type="text" id="text1"/>
         <button id="button1">BUTTON</button>
     </div>
+    <div id="parent2">
+        <input type="text" id="text2"/>
+        <button id="button2">BUTTON</button>
+    </div>
     <script>
         console.log("The world says hello from Line 13! :D");
 
+        const parentElement = document.getElementById('parent');
         const inputElement = document.getElementById('text1');
         const buttonElement = document.getElementById('button1');
-        const parentElement = document.getElementById('parent');
 
-        inputElement.addEventListener('change', function(e) {
-            console.log(`You entered "${e.target.value}"`);
+        const parentTwoElement = document.getElementById('parent2');
+        const inputTwoElement = document.getElementById('text2');
+        const buttonTwoElement = document.getElementById('button2');
+
+
+        inputElement.addEventListener('input', function(e) {
+            console.log(`You entered "${e.target.value}" in the first box.`);
+            e.stopPropagation();
             });
 
         buttonElement.addEventListener('click', function(e) {
@@ -30,7 +40,7 @@
         });
 
         buttonElement.addEventListener('mouseover', function(e) {
-            console.log("Your mouse is on the button, isn't it User?");
+            console.log("Your mouse is on the first button, isn't it User?");
         });
 
         buttonElement.addEventListener('mouseout', function(e) {
@@ -45,8 +55,39 @@
             console.log("You stopped? Very well.");
         });
 
+        inputTwoElement.addEventListener('change', function(e) {
+            console.log(`You entered "${e.target.value}" in the second box`);
+            e.stopPropagation();
+        });
+
+        buttonTwoElement.addEventListener('click', function(e) {
+            console.log('You clicked the button. Simply fantastic.');
+            e.stopPropagation();
+        });
+
+        parentTwoElement.addEventListener('click', function(e) {
+            console.log('You clicked on the second parent containing div.');
+        });
+
+        buttonTwoElement.addEventListener('mouseover', function(e) {
+            console.log("Your mouse is on the second button, isn't it User?");
+        });
+
+        buttonTwoElement.addEventListener('mouseout', function(e) {
+            console.log("You took off your mouse? Huh.");
+        });
+
+        inputTwoElement.addEventListener('focus', function(e) {
+            console.log("Are you going to start typing here, User?");
+        });
+
+        inputTwoElement.addEventListener('blur', function(e) {
+            console.log("You stopped? Very well.");
+        });
+
         document.addEventListener('keydown', function(e) {
             console.log(`Did you hit the "${e.key}" key?`);
+            e.stopPropagation();
         });
     </script>
 </body>
